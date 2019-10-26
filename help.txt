@@ -1,0 +1,27 @@
+
+     +-------------------+
+     |   HELP TXT        |
+     +-------------------+
+
+Show this help file              : +f1
+Turn on/off                      : #f1
+
+Mark mouse click positions       : #+1,...,#+5
+Mark mouse click + text positions: #+q,...,#+t
+
+Show Coords tooltips             : +{space}
+                                 : Esc to stop show showing
+
+Click set positions              : f1,...,f5
+
+Save shortcuts to file           : +#f1
+Open shortcuts from file         : +#f1 (caps locks on)
+Move to next shortcut file       : ^{space}
+
+Open settings file (Settings.txt): +#f2
+(list of saved shortcut files)
+
+Run f1, f2 shortcuts in seq      : #f2
+Run f1, f2, f3 in seq            : #f3
+Run f1, f2, f3, f4 in seq        : #f3
+Run f1, f2, f3, f4, f5 in seq    : #f3

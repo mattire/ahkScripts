@@ -1,5 +1,4 @@
 
-; comment
 fileCount:=0
 currentFileInd:=1
 
@@ -83,7 +82,7 @@ return
 	
 MouseMoveClick(xx,yy,right,txt)
 {
-	if right=0 ;msgbox, %right1% 
+	if(right=0) ;msgbox, %right1% 
 	{ 
 		MouseClick, left, %xx%, %yy% 
 		if(txt="")
@@ -191,11 +190,28 @@ return
 	
 ShowCoords()
 {
-	ToolTip, #1 %right1% %txt1%, %mouseX1%, %mouseY1%, 1
-	ToolTip, #2 %right2% %txt2%, %mouseX2%, %mouseY2%, 2
-	ToolTip, #3 %right3% %txt3%, %mouseX3%, %mouseY3%, 3
-	ToolTip, #4 %right4% %txt4%, %mouseX4%, %mouseY4%, 4
-    ToolTip, #5 %right5% %txt5%, %mouseX5%, %mouseY5%, 5
+	global 
+	; global count
+	;if(count>3)
+	;{
+	;	MsgBox, greater
+	;}
+	;msgbox, %count% 
+	Loop, %count%
+	{
+		;	msgbox, #%A_Index% 
+		gtxt := txt%A_Index%
+		gright := right%A_Index%
+		
+		;ToolTip, #%A_Index% right%A_Index% txt%A_Index%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
+		ToolTip, #%A_Index% %gright% %gtxt%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
+	}
+	
+	;ToolTip, #1 %right1% %txt1%, %mouseX1%, %mouseY1%, 1
+	;ToolTip, #2 %right2% %txt2%, %mouseX2%, %mouseY2%, 2
+	;ToolTip, #3 %right3% %txt3%, %mouseX3%, %mouseY3%, 3
+	;ToolTip, #4 %right4% %txt4%, %mouseX4%, %mouseY4%, 4
+    ;ToolTip, #5 %right5% %txt5%, %mouseX5%, %mouseY5%, 5
 }
 
 HideCoords()
@@ -209,9 +225,31 @@ HideCoords()
 }
 	
 #f1::
-	Suspend, Toggle
-	MsgBox, toggled
+	; Suspend, Toggle
+	; MsgBox, toggled
+    Suspend, permit
+    if (State = 0) {
+        Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
+        Gui, Add, Text,, On
+        Gui, Show, xCenter yCenter, State, NoActivate,
+        sleep, 400
+        Gui, Destroy
+        State++
+    }
+    else {
+        State := 0
+        Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
+        Gui, Add, Text,, Off
+        Gui, Show, xCenter yCenter, State, NoActivate, 
+        sleep, 400
+        Gui, Destroy
+    }
+    Suspend, toggle
 return
+
+
+
+
 	; global mouseX1
 	; global mouseY1
 	; global mouseX2
@@ -227,6 +265,9 @@ return
 	; SetTimer, RemoveToolTip, 2000	
 ; return	
 
++f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
+;+f1::MsgBox, %A_ScriptDir%\help.txt
+
 +#f1::
 	sp := " "
 	lf := "`n"
@@ -234,15 +275,30 @@ return
 	if(caps=0)
 	{
 		MsgBox, saving
-		content1 = %mouseX1%%sp%%mouseY1%%sp%%right1%%sp%%txt1%%lf%
-		content2 = %mouseX2%%sp%%mouseY2%%sp%%right2%%sp%%txt2%%lf%
-		content3 = %mouseX3%%sp%%mouseY3%%sp%%right3%%sp%%txt3%%lf%
-		content4 = %mouseX4%%sp%%mouseY4%%sp%%right4%%sp%%txt4%%lf%
-		content5 = %mouseX5%%sp%%mouseY5%%sp%%right5%%sp%%txt5%%lf%
-		content = %content1%%content2%%content3%%content4%%content5%
+		contents := ""
+		Loop, %count%
+		{
+			mX := mouseX%A_Index%
+			mY := mouseY%A_Index%
+			mr := right%A_Index%
+			mt := txt%A_Index%
+			MsgBox, %mX%
+			if(mX<>""&&mY<>"")
+			{
+				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%lf%
+			}
+		}
+		
+		;content1 = %mouseX1%%sp%%mouseY1%%sp%%right1%%sp%%txt1%%lf%
+		;content2 = %mouseX2%%sp%%mouseY2%%sp%%right2%%sp%%txt2%%lf%
+		;content3 = %mouseX3%%sp%%mouseY3%%sp%%right3%%sp%%txt3%%lf%
+		;content4 = %mouseX4%%sp%%mouseY4%%sp%%right4%%sp%%txt4%%lf%
+		;content5 = %mouseX5%%sp%%mouseY5%%sp%%right5%%sp%%txt5%%lf%
+		;content = %content1%%content2%%content3%%content4%%content5%
 		FileSelectFile, fn
 		f := FileOpen(fn, "w")
-		f.Write(content)
+		;f.Write(content)
+		f.Write(contents)
 		f.Close()
 	} 
 	else 
@@ -254,11 +310,50 @@ return
 	}
 return
 
++#f2::
+	ReadSettings()
+	; FileSelectFolder, fld
+	; MsgBox % list_files(fld)
+return
+
+ReadSettings()
+{
+	FileRead, content, Settings.txt
+	global fileCount
+	arr := StrSplit(content,"`n")
+	for i, ln in arr
+	{
+		;trim!!!
+		lnt := trim(ln)
+		p = %A_WorkingDir%\%lnt%
+		;MsgBox, %p%
+		LoadFile(p)
+		; UPDATE FILE COUNT  !!!
+		fileCount:=fileCount+1
+		MsgBox, %ln%
+		AddGlobalFileName(ln)
+		MsgBox, %fileCount%
+	}		
+}
+
+list_files(Folder)
+{
+	files =
+	Loop %Folder%\*.*
+	{
+		files = %files%`n%A_LoopFileName%
+	}
+	return files
+}
+
+
+
 LoadFile(fn)
 {
 	FileRead, content, %fn%
+	;MsgBox, %content%
 	arr := StrSplit(content,"`n")
-	for i, ln in arr
+ 	for i, ln in arr
 	{
 		ToCoords(ln, i)
 	}	
@@ -285,6 +380,7 @@ RemoveToolTip:
     ToolTip,,,,3
     ToolTip,,,,4
 	ToolTip,,,,5
+	ToolTip,,,,6
     ToolTip
     return
 	
@@ -307,7 +403,7 @@ Ctrl & Space::
 	;var fn = fileName%currentFileInd%
 	fn = % fileName%currentFileInd%
 	LoadFile(fileName%currentFileInd%)
-	ToolTip, %fn%, x, y, 5
+	ToolTip, %fn%, x, y, 6
 	caps := GetKeyState("Capslock", "T")
 	if(caps=0)
 	{
