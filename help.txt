@@ -1,4 +1,4 @@
-
+!
      +-------------------+
      |   HELP TXT        |
      +-------------------+
@@ -11,7 +11,9 @@ Mark mouse click positions       : #+1,...,#+5
 Mark mouse click + text positions: #+q,...,#+t
 
 Show Coords tooltips             : +{space}
+				 : Pres num (1,..,5) to select shortcut
                                  : Esc to stop show showing
+				 : NOTE: Works only when shortcuts are loaded from file
 
 Click set positions              : f1,...,f5
 
@@ -26,3 +28,4 @@ Run f1, f2 shortcuts in seq      : #f2
 Run f1, f2, f3 in seq            : #f3
 Run f1, f2, f3, f4 in seq        : #f4
 Run f1, f2, f3, f4, f5 in seq    : #f5
+	
