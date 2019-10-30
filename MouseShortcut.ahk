@@ -144,24 +144,26 @@ Shift & Space::
 	if(OutputVar = "1"){
 		HideCoords()
 		MouseMoveClick(mouseX1, mouseY1, right1, txt1)
-	}   
-	if(OutputVar = "2"){
+	}
+	else if(OutputVar = "2"){
 		HideCoords()
 		MouseMoveClick(mouseX2, mouseY2, right2, txt2)
-	}   
-	if(OutputVar = "3"){
+	}
+	else if(OutputVar = "3"){
 		HideCoords()
 		MouseMoveClick(mouseX3, mouseY3, right3, txt3)
-	}   
-	if(OutputVar = "4"){
+	}
+	else if(OutputVar = "4"){
 		HideCoords()
 		MouseMoveClick(mouseX4, mouseY4, right4, txt4)
-	}   
-	if(OutputVar = "5"){
+	}
+	else if(OutputVar = "5"){
 		HideCoords()
 		MouseMoveClick(mouseX5, mouseY5, right5, txt5)
-	}   
-	;HideCoords()
+	}
+	else {
+		HideCoords()
+	}
 	
 	;while(GetKeyState("lshift"))
 	;{
