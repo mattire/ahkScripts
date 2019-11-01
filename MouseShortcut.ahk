@@ -90,7 +90,9 @@ MouseMoveClick(xx,yy,right,txt)
 		}
 		else
 		{
+			Sleep, 50
 			Send %txt%
+			Send {Esc}
 		}
 	} 
 	else 
