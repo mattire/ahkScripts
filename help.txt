@@ -1,4 +1,4 @@
-!
+
      +-------------------+
      |   HELP TXT        |
      +-------------------+
@@ -10,7 +10,7 @@ Mark mouse click positions       : #+1,...,#+5
 (caps lock on: right click)
 Mark mouse click + text positions: #+q,...,#+t
 
-Show Coords tooltips             : +{space}
+Show Coords tooltips             : {space}
 				 : Pres num (1,..,5) to select shortcut
                                  : Esc to stop show showing
 				 : NOTE: Works only when shortcuts are loaded from file
