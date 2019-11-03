@@ -2,7 +2,7 @@
 fileCount:=0
 currentFileInd:=1
 
-SetCoord(ind,xx,yy,txt,jstTxt)
+SetCoord(ind,xx,yy,txt,jstTxt,drg)
 {
 	global
 	mouseX%ind%=%xx%
@@ -10,6 +10,9 @@ SetCoord(ind,xx,yy,txt,jstTxt)
 	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
 	txt%ind%=%txt%
 	jstTxt%ind%=%jstTxt%
+    drag%ind%=%drg%
+    ;mouseXd%ind%=%xd%
+    ;mouseYd%ind%=%yd%
 	tooltip %xx% %yy%, %xx%, %yy% ; display tooltip of %xx% %yy% at coordinates x0 y0
 	SetTimer, RemoveToolTip, 2000	
 }
@@ -17,14 +20,14 @@ SetCoord(ind,xx,yy,txt,jstTxt)
 SetMouseClick(ind)
 {
 	MouseGetPos xx, yy
-	SetCoord(ind,xx,yy,"",0)
+	SetCoord(ind,xx,yy,"",0, 0)
 }
 
 SetMouseTxtClick(ind)
 {
 	MouseGetPos xx, yy
 	InputBox, UserInput, Input, , , 240, 100
-	SetCoord(ind,xx,yy,UserInput,0)	
+	SetCoord(ind,xx,yy,UserInput,0, 0)	
 }
 
 SetJustTxt(ind)
@@ -32,7 +35,17 @@ SetJustTxt(ind)
     ;MouseGetPos xx, yy
 	InputBox, UserInput, Input, , , 240, 100
     y:=(20*ind)
-	SetCoord(ind,10,y,UserInput,1)	    
+	SetCoord(ind,10,y,UserInput,1, 0)	    
+}
+
+SetDragDestPoint(ind)
+{
+    global
+    ;MouseGetPos xd, yd
+    ;SetCoord(ind,10,y,UserInput,1, xd, yd)
+    ;  mouseXd%ind%=%xd%
+    ;  mouseYd%ind%=%yd%
+    SetCoord(ind,mouseX%ind%,mouseY%ind%,"",0, 1)
 }
 
 #+1::SetMouseClick(1)
@@ -53,6 +66,13 @@ SetJustTxt(ind)
 #+f::SetJustTxt(4)
 #+g::SetJustTxt(5)
 
+#+z::SetDragDestPoint(1)
+#+x::SetDragDestPoint(2)
+#+c::SetDragDestPoint(3)
+#+v::SetDragDestPoint(4)
+#+b::SetDragDestPoint(5)
+
+
 
 
 f1::
@@ -61,7 +81,8 @@ f1::
 	global right1
 	global txt1
     global jstTxt1
-	MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1)
+    global drag1
+	MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
 return
 
 f2::
@@ -70,7 +91,8 @@ f2::
 	global right2
 	global txt2
     global jstTxt2
-	MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2)
+    global drag2
+	MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
 return
 	
 f3::
@@ -79,7 +101,8 @@ f3::
 	global right3
 	global txt3
     global jstTxt3
-	MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3)
+    global drag3
+	MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
 return
 
 f4::
@@ -88,7 +111,8 @@ f4::
 	global right4
 	global txt4
     global jstTxt4
-	MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4)
+    global drag4
+	MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
 return
 
 f5::
@@ -97,73 +121,86 @@ f5::
 	global right5
 	global txt5
     global jstTxt5
-	MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5)
+    global drag5
+	MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
 return
 
 
-	
-MouseMoveClick(xx,yy,right,txt,jstTxt)
+
+MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
 {
-    if(jstTxt=1)
+    ;msgbox, %drg%
+    if(drg=0)
     {
-        Send, %txt%
+        if(jstTxt=1)
+        {  
+            Send, %txt%
+        }
+        else if(right=0) ;msgbox, %right1% 
+        { 
+            MouseClick, left, %xx%, %yy% 
+            if(txt="")
+            {
+            }
+            else
+            {
+                Sleep, 50
+                Send %txt%
+                Send {Esc}
+            }
+        } 
+        else 
+        {
+            MouseClick, right, %xx%, %yy% 
+        }
     }
-	else if(right=0) ;msgbox, %right1% 
-	{ 
-		MouseClick, left, %xx%, %yy% 
-		if(txt="")
-		{
-		}
-		else
-		{
-			Sleep, 50
-			Send %txt%
-			Send {Esc}
-		}
-	} 
-	else 
-	{
-		MouseClick, right, %xx%, %yy% 
-	}
+    else 
+    {
+        MouseGetPos xc, yc
+        ;msgbox, %xc%, %yc%
+        ;msgbox, %xx%, %yy%
+        MouseClickDrag, L, %xc%, %yc%, %xx%, %yy%
+        ;SendEvent {Click %xc%, %yc%, down}{click %xx%, %yy%, up}
+    }
 }
 
 #f5::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1)
+	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
 	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2)
+	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
 	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3)
+	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
 	Sleep, 50
-	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4)
+	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4, drag4)
 	Sleep, 50
-	MouseMoveClick(mouseX5, mouseY5, right5,txt5, jstTxt5)
+	MouseMoveClick(mouseX5, mouseY5, right5,txt5, jstTxt5, drag5)
 return
 
 
 #f4::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1)
+	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
 	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2)
+	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
 	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3)
+	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
 	Sleep, 50
-	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4)
+	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4, drag4)
 return
 
 
 #f3::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1)
+	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
 	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2)
+	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
 	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3)
+	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
 return
 
 
 #f2::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1)
+	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
 	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2)
+	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
 return
 
 ;Shift & Space::
@@ -172,23 +209,23 @@ return
 	Input, OutputVar, L1 M
 	if(OutputVar = "1"){
 		HideCoords()
-		MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1)
+		MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
 	}
 	else if(OutputVar = "2"){
 		HideCoords()
-		MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2)
+		MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
 	}
 	else if(OutputVar = "3"){
 		HideCoords()
-		MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3)
+		MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
 	}
 	else if(OutputVar = "4"){
 		HideCoords()
-		MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4)
+		MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
 	}
 	else if(OutputVar = "5"){
 		HideCoords()
-		MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5)
+		MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
 	}
 	else {
 		HideCoords()
@@ -310,25 +347,28 @@ return
 	lf := "`n"
 	caps := GetKeyState("Capslock", "T")
 	if(caps=0)
-	{
+	{  
 		MsgBox, saving
 		contents := ""
-		Loop, %count%
+		;Loop, %count%
+        Loop, 5
 		{
 			mX := mouseX%A_Index%
 			mY := mouseY%A_Index%
 			mr := right%A_Index%
 			mt := txt%A_Index%
+            jt := jstTxt%A_Index%
+            dg := drag%A_Index%
 			MsgBox, %mX%
 			if(mX<>""&&mY<>"")
 			{
-				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%lf%
+				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%sp%%jt%%lf%
 			}
 		}
 		
 		;content1 = %mouseX1%%sp%%mouseY1%%sp%%right1%%sp%%txt1%%lf%
 		;content2 = %mouseX2%%sp%%mouseY2%%sp%%right2%%sp%%txt2%%lf%
-		;content3 = %mouseX3%%sp%%mouseY3%%sp%%right3%%sp%%txt3%%lf%
+		;content3 = %mouseX3%%sp%%mouseY3%%sp%%righ t3%%sp%%txt3%%lf%
 		;content4 = %mouseX4%%sp%%mouseY4%%sp%%right4%%sp%%txt4%%lf%
 		;content5 = %mouseX5%%sp%%mouseY5%%sp%%right5%%sp%%txt5%%lf%
 		;content = %content1%%content2%%content3%%content4%%content5%
@@ -404,6 +444,7 @@ ToCoords(ln, ind)
 	mouseY%ind% := cs[2]
 	right%ind% := cs[3]
 	txt%ind% := cs[4]
+    jstTxt%ind% := cs[5]
 	count := ind
 }
 
