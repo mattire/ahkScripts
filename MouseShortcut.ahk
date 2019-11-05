@@ -1,52 +1,11 @@
 
+
 fileCount:=0
 currentFileInd:=1
 
-SetCoord(ind,xx,yy,txt,jstTxt,drg)
-{
-	global
-	mouseX%ind%=%xx%
-	mouseY%ind%=%yy%
-	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
-	txt%ind%=%txt%
-	jstTxt%ind%=%jstTxt%
-    drag%ind%=%drg%
-    ;mouseXd%ind%=%xd%
-    ;mouseYd%ind%=%yd%
-	tooltip %xx% %yy%, %xx%, %yy% ; display tooltip of %xx% %yy% at coordinates x0 y0
-	SetTimer, RemoveToolTip, 2000	
-}
+#include <tooltipGuide> 	
+#include <setCoords> 	
 
-SetMouseClick(ind)
-{
-	MouseGetPos xx, yy
-	SetCoord(ind,xx,yy,"",0, 0)
-}
-
-SetMouseTxtClick(ind)
-{
-	MouseGetPos xx, yy
-	InputBox, UserInput, Input, , , 240, 100
-	SetCoord(ind,xx,yy,UserInput,0, 0)	
-}
-
-SetJustTxt(ind)
-{
-    ;MouseGetPos xx, yy
-	InputBox, UserInput, Input, , , 240, 100
-    y:=(20*ind)
-	SetCoord(ind,10,y,UserInput,1, 0)	    
-}
-
-SetDragDestPoint(ind)
-{
-    global
-    ;MouseGetPos xd, yd
-    ;SetCoord(ind,10,y,UserInput,1, xd, yd)
-    ;  mouseXd%ind%=%xd%
-    ;  mouseYd%ind%=%yd%
-    SetCoord(ind,mouseX%ind%,mouseY%ind%,"",0, 1)
-}
 
 #+1::SetMouseClick(1)
 #+2::SetMouseClick(2)
@@ -66,62 +25,38 @@ SetDragDestPoint(ind)
 #+f::SetJustTxt(4)
 #+g::SetJustTxt(5)
 
-#+z::SetDragDestPoint(1)
-#+x::SetDragDestPoint(2)
-#+c::SetDragDestPoint(3)
-#+v::SetDragDestPoint(4)
-#+b::SetDragDestPoint(5)
+#+z::SetDrag(1)
+#+x::SetDrag(2)
+#+c::SetDrag(3)
+#+v::SetDrag(4)
+#+b::SetDrag(5)
 
 
 
 
 f1::
-	global mouseX1
-	global mouseY1
-	global right1
-	global txt1
-    global jstTxt1
-    global drag1
+    global mouseX1, mouseY1, right1, txt1, jstTxt1, drag1
 	MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
 return
 
+
 f2::
-	global mouseX2
-	global mouseY2
-	global right2
-	global txt2
-    global jstTxt2
-    global drag2
+    global mouseX2, mouseY2, right2, txt2, jstTxt2, drag2
 	MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
 return
 	
 f3::
-	global mouseX3
-	global mouseY3
-	global right3
-	global txt3
-    global jstTxt3
-    global drag3
+    global mouseX3, mouseY3, right3, txt3, jstTxt3, drag3
 	MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
 return
 
 f4::
-	global mouseX4
-	global mouseY4
-	global right4
-	global txt4
-    global jstTxt4
-    global drag4
+    global mouseX4, mouseY4, right4, txt4, jstTxt4, drag4
 	MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
 return
 
 f5::
-	global mouseX5
-	global mouseY5
-	global right5
-	global txt5
-    global jstTxt5
-    global drag5
+    global mouseX5, mouseY5, right5, txt5, jstTxt5, drag5
 	MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
 return
 
@@ -204,7 +139,8 @@ return
 return
 
 ;Shift & Space::
-~Space::
+; ~Space::
+~alt::
 	ShowCoords()
 	Input, OutputVar, L1 M
 	if(OutputVar = "1"){
@@ -260,43 +196,8 @@ return
 ;Shift & Space UP::
 ;	HideCoords()
 ;return
-	
-ShowCoords()
-{
-	global 
-	; global count
-	;if(count>3)
-	;{
-	;	MsgBox, greater
-	;}
-	;msgbox, %count% 
-	;Loop, %count%
-	Loop, 5
-	{
-		;msgbox, #%A_Index% 
-		gtxt := txt%A_Index%
-		gright := right%A_Index%
-		
-		;ToolTip, #%A_Index% right%A_Index% txt%A_Index%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
-		ToolTip, #%A_Index% %gright% %gtxt%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
-	}
-	
-	;ToolTip, #1 %right1% %txt1%, %mouseX1%, %mouseY1%, 1
-	;ToolTip, #2 %right2% %txt2%, %mouseX2%, %mouseY2%, 2
-	;ToolTip, #3 %right3% %txt3%, %mouseX3%, %mouseY3%, 3
-	;ToolTip, #4 %right4% %txt4%, %mouseX4%, %mouseY4%, 4
-    ;ToolTip, #5 %right5% %txt5%, %mouseX5%, %mouseY5%, 5
-}
 
-HideCoords()
-{
-    ToolTip,,,,1
-    ToolTip,,,,2
-    ToolTip,,,,3
-    ToolTip,,,,4
-    ToolTip,,,,5
-    ToolTip
-}
+
 	
 #f1::
 	; Suspend, Toggle
@@ -445,6 +346,7 @@ ToCoords(ln, ind)
 	right%ind% := cs[3]
 	txt%ind% := cs[4]
     jstTxt%ind% := cs[5]
+    drag%ind% := cs[6]
 	count := ind
 }
 
