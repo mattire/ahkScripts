@@ -6,6 +6,10 @@ currentFileInd:=1
 #include <tooltipGuide> 	
 #include <setCoords> 	
 
+logOn := 1
+
+;OutputDebug, Hello debug
+
 
 #+1::SetMouseClick(1)
 #+2::SetMouseClick(2)
@@ -64,7 +68,13 @@ return
 
 MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
 {
-    ;msgbox, %drg%
+    LogToFile("MouseMoveClick")
+    LogToFileMsg("xx    ",xx    )
+    LogToFileMsg("yy    ",yy    )
+    LogToFileMsg("right ",right )
+    LogToFileMsg("txt   ",txt   )
+    LogToFileMsg("jstTxt",jstTxt)
+    LogToFileMsg("drg   ",drg   )
     if(drg=0)
     {
         if(jstTxt=1)
@@ -86,7 +96,12 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
         } 
         else 
         {
+            ;MsgBox, BOO
+            ;MsgBox, %right%
+            LogToFile("here1")
+            LogToFile(right)
             MouseClick, right, %xx%, %yy% 
+            LogToFile("here2")
         }
     }
     else 
@@ -263,13 +278,13 @@ return
 			MsgBox, %mX%
 			if(mX<>""&&mY<>"")
 			{
-				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%sp%%jt%%lf%
+				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%sp%%jt%%sp%%dg%%lf%
 			}
 		}
 		
 		;content1 = %mouseX1%%sp%%mouseY1%%sp%%right1%%sp%%txt1%%lf%
 		;content2 = %mouseX2%%sp%%mouseY2%%sp%%right2%%sp%%txt2%%lf%
-		;content3 = %mouseX3%%sp%%mouseY3%%sp%%righ t3%%sp%%txt3%%lf%
+		;content3 = %mouseX3%%sp%%mouseY3%%sp%%right3%%sp%%txt3%%lf%
 		;content4 = %mouseX4%%sp%%mouseY4%%sp%%right4%%sp%%txt4%%lf%
 		;content5 = %mouseX5%%sp%%mouseY5%%sp%%right5%%sp%%txt5%%lf%
 		;content = %content1%%content2%%content3%%content4%%content5%
@@ -293,6 +308,29 @@ return
 	; FileSelectFolder, fld
 	; MsgBox % list_files(fld)
 return
+
+LogToFile(txt){
+    global logOn
+    if(logOn=1){
+        file := FileOpen("log.txt", "a")
+        file.write(txt)
+        file.write("`n")
+        file.close()
+    }
+}
+
+LogToFileMsg(msg, txt){
+    global logOn
+    if(logOn=1){
+        file := FileOpen("log.txt", "a")
+        file.write(msg)
+        file.write(": ")
+        file.write(txt)
+        file.write("`n")
+        file.close()
+    }
+}
+
 
 ReadSettings()
 {
@@ -344,6 +382,10 @@ ToCoords(ln, ind)
 	mouseX%ind% := cs[1]
 	mouseY%ind% := cs[2]
 	right%ind% := cs[3]
+    ;MsgBox, %right%%ind%
+    temp := cs[3]
+    ;MsgBox, %temp%
+    LogToFile(temp)
 	txt%ind% := cs[4]
     jstTxt%ind% := cs[5]
     drag%ind% := cs[6]
