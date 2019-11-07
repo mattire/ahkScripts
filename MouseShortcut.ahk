@@ -5,6 +5,7 @@ currentFileInd:=1
 
 #include <tooltipGuide> 	
 #include <setCoords> 	
+#include <functionKeyShortcuts>
 
 logOn := 1
 
@@ -34,35 +35,6 @@ logOn := 1
 #+c::SetDrag(3)
 #+v::SetDrag(4)
 #+b::SetDrag(5)
-
-
-
-
-f1::
-    global mouseX1, mouseY1, right1, txt1, jstTxt1, drag1
-	MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
-return
-
-
-f2::
-    global mouseX2, mouseY2, right2, txt2, jstTxt2, drag2
-	MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
-return
-	
-f3::
-    global mouseX3, mouseY3, right3, txt3, jstTxt3, drag3
-	MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
-return
-
-f4::
-    global mouseX4, mouseY4, right4, txt4, jstTxt4, drag4
-	MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
-return
-
-f5::
-    global mouseX5, mouseY5, right5, txt5, jstTxt5, drag5
-	MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
-return
 
 
 
@@ -208,10 +180,6 @@ return
 	;}
 return
 	
-;Shift & Space UP::
-;	HideCoords()
-;return
-
 
 	
 #f1::
@@ -239,21 +207,6 @@ return
 
 
 
-
-	; global mouseX1
-	; global mouseY1
-	; global mouseX2
-	; global mouseY2
-	; ToolTip, #1, %mouseX1%, %mouseY1%, 1
-	; ToolTip, #2, %mouseX2%, %mouseY2%, 2
-	; global mouseX3
-	; global mouseY3
-	; ToolTip, %mouseX3% %mouseY3%, %mouseX3%, %mouseY3%, 3
-	; ToolTip, #3, %mouseX3%, %mouseY3%, 3
-	; ToolTip, #4, %mouseX4%, %mouseY4%, 4
-
-	; SetTimer, RemoveToolTip, 2000	
-; return	
 
 +f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
 ;+f1::MsgBox, %A_ScriptDir%\help.txt
