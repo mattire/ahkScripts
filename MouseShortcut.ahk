@@ -219,7 +219,7 @@ return
 	caps := GetKeyState("Capslock", "T")
 	if(caps=0)
 	{  
-		MsgBox, saving
+		LogToFile("saving")
 		contents := ""
 		;Loop, %count%
         Loop, 5
@@ -230,7 +230,8 @@ return
 			mt := txt%A_Index%
             jt := jstTxt%A_Index%
             dg := drag%A_Index%
-			MsgBox, %mX%
+            LogToFile(%mX%)
+			;MsgBox, %mX%
 			if(mX<>""&&mY<>"")
 			{
 				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%sp%%jt%%sp%%dg%%lf%
