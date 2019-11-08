@@ -3,11 +3,13 @@
 fileCount:=0
 currentFileInd:=1
 
+logOn := 1
+
 #include <tooltipGuide> 	
 #include <setCoords> 	
 #include <functionKeyShortcuts>
+#include <logging>
 
-logOn := 1
 
 ;OutputDebug, Hello debug
 
@@ -262,27 +264,27 @@ return
 	; MsgBox % list_files(fld)
 return
 
-LogToFile(txt){
-    global logOn
-    if(logOn=1){
-        file := FileOpen("log.txt", "a")
-        file.write(txt)
-        file.write("`n")
-        file.close()
-    }
-}
+; LogToFile(txt){
+    ; global logOn
+    ; if(logOn=1){
+        ; file := FileOpen("log.txt", "a")
+        ; file.write(txt)
+        ; file.write("`n")
+        ; file.close()
+    ; }
+; }
 
-LogToFileMsg(msg, txt){
-    global logOn
-    if(logOn=1){
-        file := FileOpen("log.txt", "a")
-        file.write(msg)
-        file.write(": ")
-        file.write(txt)
-        file.write("`n")
-        file.close()
-    }
-}
+; LogToFileMsg(msg, txt){
+    ; global logOn
+    ; if(logOn=1){
+        ; file := FileOpen("log.txt", "a")
+        ; file.write(msg)
+        ; file.write(": ")
+        ; file.write(txt)
+        ; file.write("`n")
+        ; file.close()
+    ; }
+; }
 
 
 ReadSettings()
