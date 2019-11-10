@@ -36,3 +36,44 @@ return
 	Sleep, 50
 	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
 return
+
+
+#f6::
+	MouseMoveClick(mouseX6, mouseY6, right6,txt6, jstTxt6, drag6)
+	Sleep, 50
+	MouseMoveClick(mouseX7, mouseY7, right7,txt7, jstTxt7, drag7)
+	Sleep, 50
+	MouseMoveClick(mouseX8, mouseY8, right8,txt8, jstTxt8, drag8)
+	Sleep, 50
+	MouseMoveClick(mouseX9, mouseY9, right9,txt9, jstTxt9, drag9)
+	Sleep, 50
+	MouseMoveClick(mouseX10, mouseY10, right10,txt10, jstTxt10, drag10)
+return
+
+
+#f9::
+	MouseMoveClick(mouseX6, mouseY6, right6,txt6, jstTxt6, drag6)
+	Sleep, 50
+	MouseMoveClick(mouseX7, mouseY7, right7,txt7, jstTxt7, drag7)
+	Sleep, 50
+	MouseMoveClick(mouseX8, mouseY8, right8,txt8, jstTxt8, drag8)
+	Sleep, 50
+	MouseMoveClick(mouseX9, mouseY9, right9,txt9, jstTxt9, drag9)
+return
+
+
+#f8:
+	MouseMoveClick(mouseX6, mouseY6, right6,txt6, jstTxt6, drag6)
+	Sleep, 50
+	MouseMoveClick(mouseX7, mouseY7, right7,txt7, jstTxt7, drag7)
+	Sleep, 50
+	MouseMoveClick(mouseX8, mouseY8, right8,txt8, jstTxt8, drag8)
+return
+
+
+#f7::
+	MouseMoveClick(mouseX6, mouseY6, right6,txt6, jstTxt6, drag6)
+	Sleep, 50
+	MouseMoveClick(mouseX7, mouseY7, right7,txt7, jstTxt7, drag7)
+return
+

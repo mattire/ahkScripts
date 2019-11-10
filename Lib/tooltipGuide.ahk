@@ -9,7 +9,7 @@ ShowCoords()
 	;}
 	;msgbox, %count% 
 	;Loop, %count%
-	Loop, 5
+	Loop, 10
 	{
 		;msgbox, #%A_Index% 
 		gtxt := txt%A_Index%
@@ -33,6 +33,11 @@ HideCoords()
     ToolTip,,,,3
     ToolTip,,,,4
     ToolTip,,,,5
+    ToolTip,,,,6
+    ToolTip,,,,7
+    ToolTip,,,,8
+    ToolTip,,,,9
+    ToolTip,,,,10
     ToolTip
 }
 
@@ -63,6 +68,26 @@ HideCoords()
 		HideCoords()
 		MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
 	}
+    else if(OutputVar = "6"){
+		HideCoords()
+		MouseMoveClick(mouseX6, mouseY6, right6, txt6, jstTxt6, drag6)
+	}
+    else if(OutputVar = "7"){
+		HideCoords()
+		MouseMoveClick(mouseX7, mouseY7, right7, txt7, jstTxt7, drag7)
+	}
+    else if(OutputVar = "8"){
+		HideCoords()
+		MouseMoveClick(mouseX8, mouseY8, right8, txt8, jstTxt8, drag8)
+	}
+    else if(OutputVar = "9"){
+		HideCoords()
+		MouseMoveClick(mouseX9, mouseY9, right9, txt9, jstTxt9, drag9)
+	}
+    else if(OutputVar = "0"){
+		HideCoords()
+		MouseMoveClick(mouseX0, mouseY0, right0, txt0, jstTxt0, drag0)
+	}
 	else {
 		HideCoords()
 	}
@@ -92,5 +117,9 @@ RemoveToolTip:
 	ToolTip,,,,4
 	ToolTip,,,,5
 	ToolTip,,,,6
+	ToolTip,,,,7
+	ToolTip,,,,8
+	ToolTip,,,,9
+	ToolTip,,,,10
     ToolTip
     return
