@@ -81,4 +81,16 @@ HideCoords()
 	;	Sleep, 10
 	;}
 return
-	
+
+
+
+RemoveToolTip:
+    SetTimer, RemoveToolTip, Off
+    ToolTip,,,,1
+    ToolTip,,,,2
+    ToolTip,,,,3
+	ToolTip,,,,4
+	ToolTip,,,,5
+	ToolTip,,,,6
+    ToolTip
+    return
