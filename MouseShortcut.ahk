@@ -10,6 +10,9 @@ logOn := 1
 #include <functionKeyShortcuts>
 #include <logging>
 
++f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
+
+^r::reload
 
 ;OutputDebug, Hello debug
 
@@ -89,51 +92,6 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
 }
 
 #include <functionKeyAutomations>
-
-
-;Shift & Space::
-; ~Space::
-~alt::
-	ShowCoords()
-	Input, OutputVar, L1 M
-	if(OutputVar = "1"){
-		HideCoords()
-		MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
-	}
-	else if(OutputVar = "2"){
-		HideCoords()
-		MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
-	}
-	else if(OutputVar = "3"){
-		HideCoords()
-		MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
-	}
-	else if(OutputVar = "4"){
-		HideCoords()
-		MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
-	}
-	else if(OutputVar = "5"){
-		HideCoords()
-		MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
-	}
-	else {
-		HideCoords()
-	}
-	
-	;while(GetKeyState("lshift"))
-	;{
-	;	st1 := GetKeyState("1")
-	;	st2 := GetKeyState("2")
-	;	st3 := GetKeyState("3")
-	;	st4 := GetKeyState("4")
-	;	if(st1) { 
-	;		MouseMoveClick(mouseX1, mouseY1, right1, txt1)
-	;		;HideCoords()
-	;	}
-	
-	;	Sleep, 10
-	;}
-return
 	
 
 	
@@ -163,8 +121,8 @@ return
 
 
 
-+f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
-;+f1::MsgBox, %A_ScriptDir%\help.txt
+
+
 
 +#f1::
 	sp := " "
@@ -281,7 +239,7 @@ ToCoords(ln, ind)
 }
 
 
-^r::reload
+
 
 RemoveToolTip:
     SetTimer, RemoveToolTip, Off
