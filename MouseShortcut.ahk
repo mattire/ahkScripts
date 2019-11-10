@@ -3,10 +3,16 @@
 fileCount:=0
 currentFileInd:=1
 
+logOn := 1
+
 #include <tooltipGuide> 	
 #include <setCoords> 	
+#include <functionKeyShortcuts>
+#include <logging>
 
-logOn := 1
++f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
+
+^r::reload
 
 ;OutputDebug, Hello debug
 
@@ -34,35 +40,6 @@ logOn := 1
 #+c::SetDrag(3)
 #+v::SetDrag(4)
 #+b::SetDrag(5)
-
-
-
-
-f1::
-    global mouseX1, mouseY1, right1, txt1, jstTxt1, drag1
-	MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
-return
-
-
-f2::
-    global mouseX2, mouseY2, right2, txt2, jstTxt2, drag2
-	MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
-return
-	
-f3::
-    global mouseX3, mouseY3, right3, txt3, jstTxt3, drag3
-	MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
-return
-
-f4::
-    global mouseX4, mouseY4, right4, txt4, jstTxt4, drag4
-	MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
-return
-
-f5::
-    global mouseX5, mouseY5, right5, txt5, jstTxt5, drag5
-	MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
-return
 
 
 
@@ -114,104 +91,8 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
     }
 }
 
-#f5::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
-	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
-	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
-	Sleep, 50
-	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4, drag4)
-	Sleep, 50
-	MouseMoveClick(mouseX5, mouseY5, right5,txt5, jstTxt5, drag5)
-return
-
-
-#f4::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
-	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
-	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
-	Sleep, 50
-	MouseMoveClick(mouseX4, mouseY4, right4,txt4, jstTxt4, drag4)
-return
-
-
-#f3::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
-	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
-	Sleep, 50
-	MouseMoveClick(mouseX3, mouseY3, right3,txt3, jstTxt3, drag3)
-return
-
-
-#f2::
-	MouseMoveClick(mouseX1, mouseY1, right1,txt1, jstTxt1, drag1)
-	Sleep, 50
-	MouseMoveClick(mouseX2, mouseY2, right2,txt2, jstTxt2, drag2)
-return
-
-;Shift & Space::
-; ~Space::
-~alt::
-	ShowCoords()
-	Input, OutputVar, L1 M
-	if(OutputVar = "1"){
-		HideCoords()
-		MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
-	}
-	else if(OutputVar = "2"){
-		HideCoords()
-		MouseMoveClick(mouseX2, mouseY2, right2, txt2, jstTxt2, drag2)
-	}
-	else if(OutputVar = "3"){
-		HideCoords()
-		MouseMoveClick(mouseX3, mouseY3, right3, txt3, jstTxt3, drag3)
-	}
-	else if(OutputVar = "4"){
-		HideCoords()
-		MouseMoveClick(mouseX4, mouseY4, right4, txt4, jstTxt4, drag4)
-	}
-	else if(OutputVar = "5"){
-		HideCoords()
-		MouseMoveClick(mouseX5, mouseY5, right5, txt5, jstTxt5, drag5)
-	}
-	else {
-		HideCoords()
-	}
+#include <functionKeyAutomations>
 	
-	;while(GetKeyState("lshift"))
-	;{
-	;	st1 := GetKeyState("1")
-	;	st2 := GetKeyState("2")
-	;	st3 := GetKeyState("3")
-	;	st4 := GetKeyState("4")
-	;	if(st1) { 
-	;		MouseMoveClick(mouseX1, mouseY1, right1, txt1)
-	;		;HideCoords()
-	;	}
-	;	if(st2) { 
-	;		MouseMoveClick(mouseX2, mouseY2, right2, txt2)
-	;		;HideCoords()
-	;	}
-	;	if(st3) { 
-	;		MouseMoveClick(mouseX3, mouseY3, right3, txt3)
-	;		;HideCoords()
-	;	}
-	;	if(st4) { 
-	;		MouseMoveClick(mouseX4, mouseY4, right4, txt4)
-	;		;HideCoords()
-	;	}
-	;	Sleep, 10
-	;}
-return
-	
-;Shift & Space UP::
-;	HideCoords()
-;return
-
 
 	
 #f1::
@@ -240,23 +121,8 @@ return
 
 
 
-	; global mouseX1
-	; global mouseY1
-	; global mouseX2
-	; global mouseY2
-	; ToolTip, #1, %mouseX1%, %mouseY1%, 1
-	; ToolTip, #2, %mouseX2%, %mouseY2%, 2
-	; global mouseX3
-	; global mouseY3
-	; ToolTip, %mouseX3% %mouseY3%, %mouseX3%, %mouseY3%, 3
-	; ToolTip, #3, %mouseX3%, %mouseY3%, 3
-	; ToolTip, #4, %mouseX4%, %mouseY4%, 4
 
-	; SetTimer, RemoveToolTip, 2000	
-; return	
 
-+f1::Run C:\Windows\notepad.exe %A_ScriptDir%\help.txt
-;+f1::MsgBox, %A_ScriptDir%\help.txt
 
 +#f1::
 	sp := " "
@@ -264,7 +130,7 @@ return
 	caps := GetKeyState("Capslock", "T")
 	if(caps=0)
 	{  
-		MsgBox, saving
+		LogToFile("saving")
 		contents := ""
 		;Loop, %count%
         Loop, 5
@@ -275,7 +141,8 @@ return
 			mt := txt%A_Index%
             jt := jstTxt%A_Index%
             dg := drag%A_Index%
-			MsgBox, %mX%
+            LogToFile(%mX%)
+			;MsgBox, %mX%
 			if(mX<>""&&mY<>"")
 			{
 				contents = %contents%%mX%%sp%%mY%%sp%%mr%%sp%%mt%%sp%%jt%%sp%%dg%%lf%
@@ -309,27 +176,6 @@ return
 	; MsgBox % list_files(fld)
 return
 
-LogToFile(txt){
-    global logOn
-    if(logOn=1){
-        file := FileOpen("log.txt", "a")
-        file.write(txt)
-        file.write("`n")
-        file.close()
-    }
-}
-
-LogToFileMsg(msg, txt){
-    global logOn
-    if(logOn=1){
-        file := FileOpen("log.txt", "a")
-        file.write(msg)
-        file.write(": ")
-        file.write(txt)
-        file.write("`n")
-        file.close()
-    }
-}
 
 
 ReadSettings()
@@ -393,7 +239,7 @@ ToCoords(ln, ind)
 }
 
 
-^r::reload
+
 
 RemoveToolTip:
     SetTimer, RemoveToolTip, Off
