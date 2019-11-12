@@ -63,13 +63,13 @@ return
 
 
 #f8::
-    LogToFile("#f8 start")
+    ;LogToFile("#f8 start")
 	MouseMoveClick(mouseX6, mouseY6, right6,txt6, jstTxt6, drag6)
 	Sleep, 50
 	MouseMoveClick(mouseX7, mouseY7, right7,txt7, jstTxt7, drag7)
 	Sleep, 50
 	MouseMoveClick(mouseX8, mouseY8, right8,txt8, jstTxt8, drag8)
-    LogToFile("#f8 end")
+    ;LogToFile("#f8 end")
 return
 
 

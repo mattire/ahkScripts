@@ -9,7 +9,7 @@ ShowCoords()
 	;}
 	;msgbox, %count% 
 	;Loop, %count%
-	Loop, 10
+	Loop, 20
 	{
 		;msgbox, #%A_Index% 
 		gtxt := txt%A_Index%
@@ -38,6 +38,16 @@ HideCoords()
     ToolTip,,,,8
     ToolTip,,,,9
     ToolTip,,,,10
+    ToolTip,,,,11
+    ToolTip,,,,12
+    ToolTip,,,,13
+    ToolTip,,,,14
+    ToolTip,,,,15
+    ToolTip,,,,16
+    ToolTip,,,,17
+    ToolTip,,,,18
+    ToolTip,,,,19
+    ToolTip,,,,20
     ToolTip
 }
 
@@ -86,8 +96,51 @@ HideCoords()
 	}
     else if(OutputVar = "0"){
 		HideCoords()
-		MouseMoveClick(mouseX0, mouseY0, right0, txt0, jstTxt0, drag0)
+		MouseMoveClick(mouseX10, mouseY10, right10, txt10, jstTxt10, drag10)
 	}
+    ;--------------------
+    else if(OutputVar = "q"){
+		HideCoords()
+		MouseMoveClick(mouseX11, mouseY11, right11, txt11, jstTxt11, drag11)
+	}
+	else if(OutputVar = "w"){
+		HideCoords()
+		MouseMoveClick(mouseX12, mouseY12, right12, txt12, jstTxt12, drag12)
+	}
+	else if(OutputVar = "e"){
+		HideCoords()
+		MouseMoveClick(mouseX13, mouseY13, right13, txt13, jstTxt13, drag13)
+	}
+	else if(OutputVar = "r"){
+		HideCoords()
+		MouseMoveClick(mouseX14, mouseY14, right14, txt14, jstTxt14, drag14)
+	}
+	else if(OutputVar = "t"){
+		HideCoords()
+		MouseMoveClick(mouseX15, mouseY15, right15, txt15, jstTxt15, drag15)
+	}
+    else if(OutputVar = "y"){
+		HideCoords()
+		MouseMoveClick(mouseX16, mouseY16, right16, txt16, jstTxt16, drag16)
+	}
+    else if(OutputVar = "u"){
+		HideCoords()
+		MouseMoveClick(mouseX17, mouseY17, right17, txt17, jstTxt17, drag17)
+	}
+    else if(OutputVar = "i"){
+		HideCoords()
+		MouseMoveClick(mouseX18, mouseY18, right18, txt18, jstTxt18, drag18)
+	}
+    else if(OutputVar = "o"){
+		HideCoords()
+		MouseMoveClick(mouseX19, mouseY19, right19, txt19, jstTxt19, drag19)
+	}
+    else if(OutputVar = "p"){
+		HideCoords()
+		MouseMoveClick(mouseX20, mouseY20, right20, txt20, jstTxt20, drag20)
+	}
+
+    
 	else {
 		HideCoords()
 	}
