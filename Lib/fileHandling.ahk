@@ -7,7 +7,7 @@
 		LogToFile("saving")
 		contents := ""
 		;Loop, %count%
-        Loop, 5
+        Loop, 20
 		{
 			mX := mouseX%A_Index%
 			mY := mouseY%A_Index%
