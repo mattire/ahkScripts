@@ -5,6 +5,28 @@ currentFileInd:=1
 
 logOn := 1
 
+keyMapping := {"1":1
+            , "2":2
+            , "3":3
+            , "4":4
+            , "5":5
+            , "6":6
+            , "7":7
+            , "8":8
+            , "9":9
+            , "0":10
+            , "q":11
+            , "w":12
+            , "e":13
+            , "r":14
+            , "t":15
+            , "y":16
+            , "u":17
+            , "i":18
+            , "o":19
+            , "p":20 }
+
+
 #include <tooltipGuide> 	
 #include <setCoords> 	
 ;#include <functionKeyShortcuts>
@@ -34,6 +56,18 @@ logOn := 1
 #i::SetMouseClick(18)
 #o::SetMouseClick(19)
 #p::SetMouseClick(20)
+
+#a::SetMouseClick(21)
+#s::SetMouseClick(22)
+#d::SetMouseClick(23)
+#f::SetMouseClick(24)
+#g::SetMouseClick(25)
+#h::SetMouseClick(26)
+#j::SetMouseClick(27)
+#k::SetMouseClick(28)
+#l::SetMouseClick(29)
+
+
 
 +#1::SetMouseTxtClick(1)
 +#2::SetMouseTxtClick(2)
@@ -121,13 +155,13 @@ logOn := 1
 ;#l::SetJustTxt(9)
 
 
-#z::SetDrag(1)
-#x::SetDrag(2)
-#c::SetDrag(3)
-#v::SetDrag(4)
-#b::SetDrag(5)
-#n::SetDrag(6)
-#m::SetDrag(7)
+; #z::SetDrag(1)
+; #x::SetDrag(2)
+; #c::SetDrag(3)
+; #v::SetDrag(4)
+; #b::SetDrag(5)
+; #n::SetDrag(6)
+; #m::SetDrag(7)
 
 
 
@@ -144,8 +178,9 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
     {
         if(jstTxt=1)
         {  
-            Send, %txt%
-            Send {Esc}
+            SendTxt(txt)
+            ;Send, %txt%
+            ;Send {Esc}
         }
         else if(right=0) ;msgbox, %right1% 
         { 
@@ -156,8 +191,9 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
             else
             {
                 Sleep, 50
-                Send %txt%
-                Send {Esc}
+                SendTxt(txt)
+                ;Send %txt%
+                ;Send {Esc}
             }
         } 
         else 
@@ -178,6 +214,16 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
         MouseClickDrag, L, %xc%, %yc%, %xx%, %yy%
         ;SendEvent {Click %xc%, %yc%, down}{click %xx%, %yy%, up}
     }
+}
+
+SendTxt(txt)
+{
+    Suspend, permit
+    Suspend, toggle
+    Send, txt
+    Send, {Esc}
+    Suspend, toggle
+    return
 }
 
 ;#include <functionKeyAutomations>
