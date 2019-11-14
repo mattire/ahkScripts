@@ -220,7 +220,7 @@ SendTxt(txt)
 {
     Suspend, permit
     Suspend, toggle
-    Send, txt
+    Send, %txt%
     Send, {Esc}
     Suspend, toggle
     return
