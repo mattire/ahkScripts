@@ -22,18 +22,27 @@ SetMouseClick(ind)
 
 SetMouseTxtClick(ind)
 {
+    Suspend, permit
+    Suspend, toggle
+
 	MouseGetPos xx, yy
 	InputBox, UserInput, Input, , , 240, 100
+    Suspend, toggle
 	SetCoord(ind,xx,yy,UserInput,0, 0)	
 }
 
 SetJustTxt(ind)
 {
+    Suspend, permit
+    Suspend, toggle
+
     ;MouseGetPos xx, yy
 	InputBox, UserInput, Input, , , 240, 100
     y:=(20*ind)
-	SetCoord(ind,10,y,UserInput,1, 0)	    
+    Suspend, toggle    
+	SetCoord(ind,10,y,UserInput,1, 0)
 }
+
 
 SetDrag(ind)
 {
