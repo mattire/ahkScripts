@@ -27,11 +27,11 @@ keyMapping := {"1":1
             , "p":20 }
 
 
+#include <logging>
 #include <tooltipGuide> 	
 #include <setCoords> 	
 ;#include <functionKeyShortcuts>
 #include <combKeyShortcuts>
-#include <logging>
 #include <scriptHandling>
 #include <fileHandling>
 

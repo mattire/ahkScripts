@@ -1,4 +1,5 @@
 
+
 ShowCoords()
 {
 	global 
@@ -17,37 +18,16 @@ ShowCoords()
 		
 		;ToolTip, #%A_Index% right%A_Index% txt%A_Index%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
 		ToolTip, #%A_Index% %gright% %gtxt%, mouseX%A_Index%, mouseY%A_Index%, %A_Index%
-	}
-	
-	;ToolTip, #1 %right1% %txt1%, %mouseX1%, %mouseY1%, 1
-	;ToolTip, #2 %right2% %txt2%, %mouseX2%, %mouseY2%, 2
-	;ToolTip, #3 %right3% %txt3%, %mouseX3%, %mouseY3%, 3
-	;ToolTip, #4 %right4% %txt4%, %mouseX4%, %mouseY4%, 4
-    ;ToolTip, #5 %right5% %txt5%, %mouseX5%, %mouseY5%, 5
+	}	
 }
 
 HideCoords()
 {
-    ToolTip,,,,1
-    ToolTip,,,,2
-    ToolTip,,,,3
-    ToolTip,,,,4
-    ToolTip,,,,5
-    ToolTip,,,,6
-    ToolTip,,,,7
-    ToolTip,,,,8
-    ToolTip,,,,9
-    ToolTip,,,,10
-    ToolTip,,,,11
-    ToolTip,,,,12
-    ToolTip,,,,13
-    ToolTip,,,,14
-    ToolTip,,,,15
-    ToolTip,,,,16
-    ToolTip,,,,17
-    ToolTip,,,,18
-    ToolTip,,,,19
-    ToolTip,,,,20
+    Loop, 20
+    {
+        ToolTip,,,,%A_Index%
+    }
+
     ToolTip
 }
 
@@ -56,8 +36,18 @@ HideCoords()
 ;Shift & Space::
 ; ~Space::
 ~alt::
+    global keyMapping
 	ShowCoords()
 	Input, OutputVar, L1 M
+    
+    ind := keyMapping[OutputVar]
+    LogToFile("Guide")
+    LogToFileMsg("OutputVar",OutputVar    )
+    LogToFileMsg("ind      ",ind    )
+    
+    ; HideCoords()
+    ; MouseMoveClick(mouseX%ind%, mouseY%ind%, right%ind%, txt%ind%, jstTxt%ind%, drag%ind%)
+    
 	if(OutputVar = "1"){
 		HideCoords()
 		MouseMoveClick(mouseX1, mouseY1, right1, txt1, jstTxt1, drag1)
@@ -98,7 +88,7 @@ HideCoords()
 		HideCoords()
 		MouseMoveClick(mouseX10, mouseY10, right10, txt10, jstTxt10, drag10)
 	}
-    ;--------------------
+    ; --------------------
     else if(OutputVar = "q"){
 		HideCoords()
 		MouseMoveClick(mouseX11, mouseY11, right11, txt11, jstTxt11, drag11)
@@ -145,6 +135,8 @@ HideCoords()
 		HideCoords()
 	}
 	
+    
+    
 	;while(GetKeyState("lshift"))
 	;{
 	;	st1 := GetKeyState("1")
