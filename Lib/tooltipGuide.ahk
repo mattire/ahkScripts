@@ -35,6 +35,7 @@ HideCoords()
 
 ;Shift & Space::
 ; ~Space::
+; ~!q::
 ~alt::
     global keyMapping
 	ShowCoords()
@@ -135,8 +136,6 @@ HideCoords()
 		HideCoords()
 	}
 	
-    
-    
 	;while(GetKeyState("lshift"))
 	;{
 	;	st1 := GetKeyState("1")
