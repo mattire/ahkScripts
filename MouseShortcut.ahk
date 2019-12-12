@@ -17,7 +17,11 @@ keyMapping := {"q":0
              , "p":9}
 
 
+
+
+
 #include <logging>
+#include <initGlobalCoords>
 ; #include <tooltipGuide> 	
 #include <tooltipGuide2>
 ;#include <setCoords>
