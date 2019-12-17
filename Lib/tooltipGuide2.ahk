@@ -46,15 +46,18 @@ ShowToolTipInd(ch, ind, aindex)
 }
 
 
-#'::
-    v :=keyMapping["q"]
-    MsgBox, %v%
-return
+; #'::
+    ; v :=keyMapping["q"]
+    ; MsgBox, %v%
+; return
+
+
 
 
 
 ShowCoordsPhase(ch, hide)
 {
+    global altNum
     global keyMapping
     LogToFile("ShowCoordsPhase")
     LogToFileMsg("ch"   ,ch)
@@ -67,12 +70,12 @@ ShowCoordsPhase(ch, hide)
         ind = %start%%A_Index%
         x = mouseX%ind%
         y = mouseY%ind%
-        LogToFileMsg("A_Index", A_Index)
-        LogToFileMsg("ind", ind)
-        LogToFileMsg("X", mouseX%ind%)
-        LogToFileMsg("Y", mouseY%ind%)
-        LogToFileMsg("x", x)
-        LogToFileMsg("y", y)
+        ; LogToFileMsg("A_Index", A_Index)
+        ; LogToFileMsg("ind", ind)
+        ; LogToFileMsg("X", mouseX%ind%)
+        ; LogToFileMsg("Y", mouseY%ind%)
+        ; LogToFileMsg("x", x)
+        ; LogToFileMsg("y", y)
         ; ShowToolTipInd(ch, ind, A_Index)
         ; ToolTip, #%A_Index% %gright% %gtxt%, mouseX%ind%, mouseY%ind%, %ind%
         ToolTip, #%A_Index% %gright% %gtxt%, mouseX%ind%, mouseY%ind%, %A_Index%
@@ -84,12 +87,17 @@ ShowCoordsPhase(ch, hide)
     }
     else if (hide==2)
     {
+        altNum := start
         Input, OutputVar, L1 M
         if (OutputVar==0||OutputVar==1||OutputVar==2||OutputVar==3||OutputVar==4||OutputVar==5||OutputVar==6||OutputVar==7||OutputVar==8||OutputVar==9)
-        {                
+        {   
             capsOn := GetKeyState("Capslock", "T")
+            State := GetKeyState("Alt", "P")
+            ; MsgBox, %State%        
+            ; GetKeyState, State, Shift
             
-            if(capsOn==0){
+            ; if(capsOn==0){
+            if(State==0){
                 ind = %start%%OutputVar%
                 MouseMoveClick(  mouseX%ind%
                                 ,mouseY%ind%
@@ -98,22 +106,20 @@ ShowCoordsPhase(ch, hide)
                                 ,jstTxt%ind%
                                 ,drag%ind%)
             }
-            if(capsOn==1){
-                ; RunSequenceClicks(start, OutputVar)
-                count := OutputVar + 0
-                ; , %count%
-                ;Loop, count
-                Loop, %count%
-                {
-                    ind = %start%%A_Index%
-                    ; MsgBox, %ind%
-                    MouseMoveClick(  mouseX%ind%
-                                    ,mouseY%ind%
-                                    ,right%ind%
-                                    ,txt%ind%
-                                    ,jstTxt%ind%
-                                    ,drag%ind%)                                    
-                }
+            
+            ; if(capsOn==1){
+            if(State==1){
+                RunSequenceClicks(start, OutputVar)
+                ;count := OutputVar + 0
+                ;Loop, %count%
+                ;{
+                ;    ind = %start%%A_Index%
+                ;    LogToFileMsg("seq ind", ind)
+                ;    MouseMoveClick(  mouseX%ind%, mouseY%ind%
+                ;                    ,right%ind%, txt%ind%
+                ;                    ,jstTxt%ind%,drag%ind%)                                    
+                ;    Sleep, 50
+                ;}
             }
         } 
         SetTimer, RemoveToolTip, 0

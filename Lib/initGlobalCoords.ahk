@@ -39,7 +39,7 @@ LogGlobalCoord(ind, ind1, ind2)
     LogToFileMsg("coord ind2", ind2)
     LogToFileMsg("log x", x)
     LogToFileMsg("log y", y)
-    ; mouseX%ind% = 0
+    ; mouseX%ind% = 0 
     ; mouseY%ind% = 0
 }
 
