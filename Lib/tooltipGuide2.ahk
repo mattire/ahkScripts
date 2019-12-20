@@ -46,10 +46,9 @@ ShowToolTipInd(ch, ind, aindex)
 }
 
 
-; #'::
-    ; v :=keyMapping["q"]
-    ; MsgBox, %v%
-; return
+#'::
+    MouseClick, right, 800, 400
+return
 
 
 
@@ -97,30 +96,30 @@ ShowCoordsPhase(ch, hide)
             ; GetKeyState, State, Shift
             
             ; if(capsOn==0){
-            if(State==0){
+            ; if(State==0){
                 ind = %start%%OutputVar%
-                MouseMoveClick(  mouseX%ind%
-                                ,mouseY%ind%
-                                ,right%ind%
-                                ,txt%ind%
-                                ,jstTxt%ind%
-                                ,drag%ind%)
-            }
+                r := right%ind%
+                ; MsgBox, %r%
+                if (r == 0)
+                {
+                    MouseMoveClick(  mouseX%ind%
+                                    ,mouseY%ind%
+                                    ,right%ind%
+                                    ,txt%ind%
+                                    ,jstTxt%ind%
+                                    ,drag%ind%)
+                } 
+                else
+                {
+                    ;MouseMove, mouseX%ind%, mouseY%ind%
+                    ;; MsgBox, buu
+                    ;Sleep, 1000
+                    ;Click, right, mouseX%ind%, mouseY%ind%
+                    ; MouseClick, right, mouseX%ind%, mouseY%ind%
+                }
+                
+            ; }
             
-            ; if(capsOn==1){
-            if(State==1){
-                RunSequenceClicks(start, OutputVar)
-                ;count := OutputVar + 0
-                ;Loop, %count%
-                ;{
-                ;    ind = %start%%A_Index%
-                ;    LogToFileMsg("seq ind", ind)
-                ;    MouseMoveClick(  mouseX%ind%, mouseY%ind%
-                ;                    ,right%ind%, txt%ind%
-                ;                    ,jstTxt%ind%,drag%ind%)                                    
-                ;    Sleep, 50
-                ;}
-            }
         } 
         SetTimer, RemoveToolTip, 0
     }

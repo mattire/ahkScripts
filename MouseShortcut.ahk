@@ -3,7 +3,7 @@
 fileCount:=0
 currentFileInd:=1
 
-logOn := 0
+logOn := 1
 
 keyMapping := {"q":0
              , "w":1
@@ -44,12 +44,12 @@ keyMapping := {"q":0
 
 
 
-MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
+MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
 {
     LogToFile("MouseMoveClick")
     LogToFileMsg("xx    ",xx    )
     LogToFileMsg("yy    ",yy    )
-    LogToFileMsg("right ",right )
+    LogToFileMsg("rght ",rght )
     LogToFileMsg("txt   ",txt   )
     LogToFileMsg("jstTxt",jstTxt)
     LogToFileMsg("drg   ",drg   )
@@ -61,10 +61,8 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
             ;Send, %txt%
             ;Send {Esc}
         }
-        else if(right=0) ;msgbox, %right1% 
+        else if(rght==0) ;msgbox, %rght1% 
         { 
-            LogToFileMsg("xx", xx)
-            LogToFileMsg("yy", yy)
             MouseClick, left, %xx%, %yy% 
             if(txt="")
             {
@@ -77,17 +75,36 @@ MouseMoveClick(xx,yy,right,txt,jstTxt, drg)
                 ;Send {Esc}
             }
         } 
-        else 
+        ; msgbox, %rght%
+        if(rght==1)
         {
+            LogToFileMsg("xx", xx)
+            LogToFileMsg("yy", yy)
             ; msgbox, BLAAAB
             ; LogToFile("here1")
+            ; LogToFile(rght)
             ; LogToFile(right)
+            ; r:="right"
+            ; MouseClick, %r%, %xx%, %yy% 
             ; MouseClick, right, %xx%, %yy% 
-            ; LogToFile("here2")
+            MouseClick, right, 800, 400
+            ; MouseMove, %xx%, %yy%, 5   
+            ; Sleep, 10
+            ; Send, {RButton down}
+            ; Sleep, 10
+            ; Send, {RButton up}
+            ; Sleep, 50
+            ; Send, {RButton down}
+            ; Send, {RButton up}
+            ; MouseClick, RIGHT, %xx%, %yy%
+            ; Sleep, 50
+            ; MouseClick, RIGHT, %xx%, %yy%
+            LogToFile("here2")
         }
     }
     else 
     {
+        LogToFile("here3")
         ; msgbox, BLAAAB
         ; MouseGetPos xc, yc
         ; msgbox, %xc%, %yc%

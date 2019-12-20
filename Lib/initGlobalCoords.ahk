@@ -70,4 +70,4 @@ LogGlobalCoords()
 }
 
 InitGlobals()
-LogGlobalCoords()
+; LogGlobalCoords()

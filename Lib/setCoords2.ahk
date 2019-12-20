@@ -7,9 +7,10 @@ SetCoord(ind,xx,yy,txt,jstTxt,drg)
 	global
 	mouseX%ind%=%xx%
 	mouseY%ind%=%yy%
+	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
     LogToFileMsg("x", mouseX%ind%)
     LogToFileMsg("y", mouseY%ind%)
-	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
+    LogToFileMsg("right", right%ind%)
 	txt%ind%=%txt%
 	jstTxt%ind%=%jstTxt%
     drag%ind%=%drg%
