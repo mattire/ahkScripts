@@ -82,12 +82,12 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
             LogToFileMsg("yy", yy)
             ; msgbox, BLAAAB
             ; LogToFile("here1")
-            ; LogToFile(rght)
-            ; LogToFile(right)
-            ; r:="right"
             ; MouseClick, %r%, %xx%, %yy% 
-            ; MouseClick, right, %xx%, %yy% 
-            MouseClick, right, 800, 400
+            MouseClick, left, %xx%, %yy% 
+            Sleep, 20
+            MouseClick, right
+            ; MouseClick, right, %xx%, %yy%
+            ; MouseClick, right, 800, 400
             ; MouseMove, %xx%, %yy%, 5   
             ; Sleep, 10
             ; Send, {RButton down}
@@ -96,8 +96,6 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
             ; Sleep, 50
             ; Send, {RButton down}
             ; Send, {RButton up}
-            ; MouseClick, RIGHT, %xx%, %yy%
-            ; Sleep, 50
             ; MouseClick, RIGHT, %xx%, %yy%
             LogToFile("here2")
         }
