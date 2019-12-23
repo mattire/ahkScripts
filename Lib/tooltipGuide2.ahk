@@ -113,15 +113,18 @@ ShowCoordsPhase(ch, hide)
                 else
                 {
                     ; MouseClick, right, 800, 400
-                    ; MouseClick, right, mouseX%ind%, mouseY%ind%
-                    ;MouseMove, mouseX%ind%, mouseY%ind%
                     ;; MsgBox, buu
                     ; Sleep, 1000
+                    
                     ; MouseClick, right
+                    ; MouseClick, right, mouseX%ind%, mouseY%ind%
+                    MouseMove, mouseX%ind%, mouseY%ind%
+                    
                     Sleep, 50
                     Send, {RButton down}
                     Sleep, 50
                     Send, {RButton up}
+
                     ;Click, right, mouseX%ind%, mouseY%ind%
                     ; MouseClick, right, mouseX%ind%, mouseY%ind%
                 }
