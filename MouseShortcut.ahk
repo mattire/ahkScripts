@@ -80,9 +80,7 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
         {
             LogToFileMsg("xx", xx)
             LogToFileMsg("yy", yy)
-            ; msgbox, BLAAAB
-            ; LogToFile("here1")
-            ; MouseClick, %r%, %xx%, %yy% 
+            
             MouseClick, left, %xx%, %yy% 
             Sleep, 20
             MouseClick, right

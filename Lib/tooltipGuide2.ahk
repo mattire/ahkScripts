@@ -196,16 +196,5 @@ RemoveToolTip:
     }
 
     ToolTip
-    
-    ; ToolTip,,,,1
-    ; ToolTip,,,,2
-    ; ToolTip,,,,3
-	; ToolTip,,,,4
-	; ToolTip,,,,5
-	; ToolTip,,,,6
-	; ToolTip,,,,7
-	; ToolTip,,,,8
-	; ToolTip,,,,9
-	; ToolTip,,,,10
-    ; ToolTip
-    return
+
+return
