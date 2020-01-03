@@ -101,33 +101,24 @@ ShowCoordsPhase(ch, hide)
                 ind = %start%%OutputVar%
                 r := right%ind%
                 ; MsgBox, %r%
-                if (r == 0)
-                {
+                ; if (r == 0)
+                ; {
                     MouseMoveClick(  mouseX%ind%
                                     ,mouseY%ind%
                                     ,right%ind%
                                     ,txt%ind%
                                     ,jstTxt%ind%
                                     ,drag%ind%)
-                } 
-                else
-                {
-                    ; MouseClick, right, 800, 400
-                    ;; MsgBox, buu
-                    ; Sleep, 1000
+                ; } 
+                ; else
+                ; {
+                    ; MouseMove, mouseX%ind%, mouseY%ind%
                     
-                    ; MouseClick, right
-                    ; MouseClick, right, mouseX%ind%, mouseY%ind%
-                    MouseMove, mouseX%ind%, mouseY%ind%
-                    
-                    Sleep, 50
-                    Send, {RButton down}
-                    Sleep, 50
-                    Send, {RButton up}
-
-                    ;Click, right, mouseX%ind%, mouseY%ind%
-                    ; MouseClick, right, mouseX%ind%, mouseY%ind%
-                }
+                    ; Sleep, 50
+                    ; Send, {RButton down}
+                    ; Sleep, 50
+                    ; Send, {RButton up}
+                ; }
                 
             ; }
             

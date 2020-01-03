@@ -80,11 +80,21 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
         {
             LogToFileMsg("xx", xx)
             LogToFileMsg("yy", yy)
+    
+            ; MouseMove, mouseX%ind%, mouseY%ind%
+            MouseMove, %xx%, %yy%
             
-            MouseClick, left, %xx%, %yy% 
-            Sleep, 20
-            MouseClick, right
+            Sleep, 50
+            Send, {RButton down}
+            Sleep, 50
+            Send, {RButton up}
+            
+            ; MouseClick, left, %xx%, %yy% 
+            ; Sleep, 20
+            ; MouseClick, right
+            
             ; MouseClick, right, %xx%, %yy%
+            
             ; MouseClick, right, 800, 400
             ; MouseMove, %xx%, %yy%, 5   
             ; Sleep, 10

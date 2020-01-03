@@ -4,6 +4,7 @@ InitGlobalCoord(ind)
     global
     mouseX%ind% := 0
     mouseY%ind% := 0
+    right%ind% := 0
 }
 
 SetGlobalCoordSet(ind1)
