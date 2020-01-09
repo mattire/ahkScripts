@@ -4,7 +4,10 @@ InitGlobalCoord(ind)
     global
     mouseX%ind% := 0
     mouseY%ind% := 0
-    right%ind% := 0
+    right%ind%  := 0
+    jstTxt%ind% := 0
+    txt%ind%    := ""
+    drag%ind%   := 0
 }
 
 SetGlobalCoordSet(ind1)

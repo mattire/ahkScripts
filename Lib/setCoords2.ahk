@@ -7,11 +7,12 @@ SetCoord(ind,xx,yy,txt,jstTxt,drg)
 	global
 	mouseX%ind%=%xx%
 	mouseY%ind%=%yy%
+	txt%ind%=%txt%
 	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
     LogToFileMsg("x", mouseX%ind%)
     LogToFileMsg("y", mouseY%ind%)
     LogToFileMsg("right", right%ind%)
-	txt%ind%=%txt%
+    LogToFileMsg("txt", txt%ind%)
 	jstTxt%ind%=%jstTxt%
     drag%ind%=%drg%
     ;mouseXd%ind%=%xd%
@@ -36,6 +37,7 @@ SetMouseTxtClick(ind)
 	InputBox, UserInput, Input, , , 240, 100
     Suspend, toggle
 	SetCoord(ind,xx,yy,UserInput,0, 0)	
+	; SetCoord(ind,xx,yy,"",0, 0)
 }
 
 SetJustTxt(ind)
@@ -76,7 +78,8 @@ Set2PhaseClick(ind1)
 Set2PhaseTxtClick(ind1)
 {
     Input, OutputVar, L1 M
-    ind := %OutputVar%%ind1%
+    ind = %ind1%%OutputVar%
+    LogToFile("Set2PhaseTxtClick")
     SetMouseTxtClick(ind)
 }
 Set2PhaseJustTxt(ind1)

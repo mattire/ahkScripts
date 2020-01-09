@@ -42,6 +42,17 @@ keyMapping := {"q":0
 #p::Set2PhaseClick("9")
 
 
+#a::Set2PhaseTxtClick("0")
+#s::Set2PhaseTxtClick("1")
+#d::Set2PhaseTxtClick("2")
+#f::Set2PhaseTxtClick("3")
+#g::Set2PhaseTxtClick("4")
+#h::Set2PhaseTxtClick("5")
+#j::Set2PhaseTxtClick("6")
+#k::Set2PhaseTxtClick("7")
+#l::Set2PhaseTxtClick("8")
+
+
 
 
 MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
@@ -81,7 +92,6 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
             LogToFileMsg("xx", xx)
             LogToFileMsg("yy", yy)
     
-            ; MouseMove, mouseX%ind%, mouseY%ind%
             MouseMove, %xx%, %yy%
             
             Sleep, 50
@@ -89,22 +99,6 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
             Sleep, 50
             Send, {RButton up}
             
-            ; MouseClick, left, %xx%, %yy% 
-            ; Sleep, 20
-            ; MouseClick, right
-            
-            ; MouseClick, right, %xx%, %yy%
-            
-            ; MouseClick, right, 800, 400
-            ; MouseMove, %xx%, %yy%, 5   
-            ; Sleep, 10
-            ; Send, {RButton down}
-            ; Sleep, 10
-            ; Send, {RButton up}
-            ; Sleep, 50
-            ; Send, {RButton down}
-            ; Send, {RButton up}
-            ; MouseClick, RIGHT, %xx%, %yy%
             LogToFile("here2")
         }
     }
