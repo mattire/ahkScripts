@@ -25,48 +25,6 @@ RunSequenceClicks(ind1, count)
         Sleep, 50
     }
     return
-    
-    ind = %ind1%1
-    SendClick(ind)
-    SendClick(ind)
-    Sleep, 100
-    IF (count==0)
-    {
-        return
-    }
-    ind = %ind1%2
-    SendClick(ind)
-    SendClick(ind)
-    ; SendClick(ind)
-    Sleep, 100
-    IF (count==1)
-    {
-        return
-    }
-    ind = %ind1%3
-    SendClick(ind)
-    ; SendClick(ind)
-    ; SendClick(ind)
-    Sleep, 100
-    IF (count==2)
-    {
-        return
-    }
-    MsgBox, blaa2
-    IF (count==3)
-    {
-        return
-    }
-    MsgBox, blaa3
-    
-    ;{
-    ;    ind = %start%%OutputVar%
-    ;    MsgBox, %ind%
-    ;    MouseMoveClick(  mouseX%ind%, mouseY%ind%
-    ;                                ,right%ind%, txt%ind%
-    ;                                ,jstTxt%ind%,drag%ind%)                                    
-    ;    Sleep, 50
-    ;}
 }
 
 RunSequence(count)

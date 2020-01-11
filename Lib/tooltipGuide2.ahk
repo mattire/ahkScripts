@@ -96,31 +96,25 @@ ShowCoordsPhase(ch, hide)
             ; MsgBox, %State%        
             ; GetKeyState, State, Shift
             
-            ; if(capsOn==0){
+            if(capsOn==0){
             ; if(State==0){
                 ind = %start%%OutputVar%
                 r := right%ind%
-                ; MsgBox, %r%
-                ; if (r == 0)
-                ; {
-                    MouseMoveClick(  mouseX%ind%
-                                    ,mouseY%ind%
-                                    ,right%ind%
-                                    ,txt%ind%
-                                    ,jstTxt%ind%
-                                    ,drag%ind%)
-                ; } 
-                ; else
-                ; {
-                    ; MouseMove, mouseX%ind%, mouseY%ind%
-                    
-                    ; Sleep, 50
-                    ; Send, {RButton down}
-                    ; Sleep, 50
-                    ; Send, {RButton up}
-                ; }
-                
-            ; }
+                MouseMoveClick(  mouseX%ind%
+                                ,mouseY%ind%
+                                ,right%ind%
+                                ,txt%ind%
+                                ,jstTxt%ind%
+                                ,drag%ind%)
+            } 
+            else
+            {
+                LogToFile("Run seq")
+                LogToFileMsg("start", start)
+                LogToFileMsg("OutputVar", OutputVar)
+                RunSequenceClicks(start, OutputVar)
+                ; MsgBox, seq
+            }
             
         } 
         else {
