@@ -1,6 +1,6 @@
 
 
-
+    
 
 SetCoord(ind,xx,yy,txt,jstTxt,drg)
 {
@@ -9,12 +9,13 @@ SetCoord(ind,xx,yy,txt,jstTxt,drg)
 	mouseY%ind%=%yy%
 	txt%ind%=%txt%
 	right%ind% := GetKeyState("Capslock", "T")  ; 1 if CapsLock is ON, 0 otherwise.
+    drag%ind%=%drg%
     LogToFileMsg("x", mouseX%ind%)
     LogToFileMsg("y", mouseY%ind%)
     LogToFileMsg("right", right%ind%)
     LogToFileMsg("txt", txt%ind%)
 	jstTxt%ind%=%jstTxt%
-    drag%ind%=%drg%
+    LogToFileMsg("drg", drag%ind%)
     ;mouseXd%ind%=%xd%
     ;mouseYd%ind%=%yd%
 	;tooltip %xx% %yy%, %xx%, %yy% ; display tooltip of %xx% %yy% at coordinates x0 y0
@@ -55,12 +56,15 @@ SetJustTxt(ind)
 
 SetDrag(ind)
 {
-    global
+    MouseGetPos xx, yy
+    ;Input, OutputVar, L1 M
+    ;ind = %ind1%%OutputVar%
+    LogToFile("SetDrag")
     ;MouseGetPos xd, yd
     ;SetCoord(ind,10,y,UserInput,1, xd, yd)
     ;  mouseXd%ind%=%xd%
     ;  mouseYd%ind%=%yd%
-    SetCoord(ind,mouseX%ind%,mouseY%ind%,"",0, 1)
+    SetCoord(ind,xx,yy,"",0, 1)
 }
 
 
@@ -91,6 +95,9 @@ Set2PhaseJustTxt(ind1)
 Set2PhaseDrag(ind1)
 {        
     Input, OutputVar, L1 M
-    ind := %OutputVar%%ind1%
+    ind = %ind1%%OutputVar%
+    LogToFile("Set2PhaseDrag")
+    LogToFileMsg("ind1     ",ind1   )
+    LogToFileMsg("ind      ",ind    )    
     SetDrag(ind)
 }

@@ -115,7 +115,6 @@ ShowCoordsPhase(ch, hide)
                 RunSequenceClicks(start, OutputVar)
                 ; MsgBox, seq
             }
-            
         } 
         else {
             SetTimer, RemoveToolTip, 0

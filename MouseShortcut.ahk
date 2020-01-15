@@ -52,7 +52,13 @@ keyMapping := {"q":0
 #k::Set2PhaseTxtClick("7")
 #l::Set2PhaseTxtClick("8")
 
-
+#z::Set2PhaseDrag("0")
+#x::Set2PhaseDrag("1")
+#c::Set2PhaseDrag("2")
+#v::Set2PhaseDrag("3")
+#b::Set2PhaseDrag("4")
+#n::Set2PhaseDrag("5")
+#m::Set2PhaseDrag("6")
 
 
 MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
@@ -105,6 +111,12 @@ MouseMoveClick(xx,yy,rght,txt,jstTxt, drg)
     else 
     {
         LogToFile("here3")
+        Send, {LButton down}
+        Sleep, 20
+        MouseMove, %xx%, %yy%
+        Sleep, 20
+        Send, {LButton up}
+        
         ; msgbox, BLAAAB
         ; MouseGetPos xc, yc
         ; msgbox, %xc%, %yc%
