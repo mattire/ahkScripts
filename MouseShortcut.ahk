@@ -28,7 +28,8 @@ keyMapping := {"q":0
 ;#include <functionKeyShortcuts>
 #include <combKeyShortcuts>
 #include <scriptHandling>
-#include <fileHandling>
+; #include <fileHandling>
+#include <fileHandling2>
 
 #q::Set2PhaseClick("0")
 #w::Set2PhaseClick("1")
